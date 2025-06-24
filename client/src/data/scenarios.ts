@@ -1,4 +1,4 @@
-import { Scenario } from '../types/game';
+import type { Scenario } from '../types/game';
 
 export const scenariosByLevel: Record<number, Scenario[]> = {
   1: [ // Phishing Detection
