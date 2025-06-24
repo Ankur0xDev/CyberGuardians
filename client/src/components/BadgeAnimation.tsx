@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Badge } from '../types/game';
+import type { Badge } from '../types/game';
 import { Shield, Award, Trophy } from 'lucide-react';
 
 interface BadgeAnimationProps {
