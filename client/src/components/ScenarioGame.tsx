@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import type{ Scenario, Level, CharacterType } from '../types/game';
+import type{  Level, CharacterType } from '../types/game';
 import { Heart, Shield, AlertTriangle, CheckCircle, X } from 'lucide-react';
 import Character from './Character';
 import DialogueBox from './DialogueBox';

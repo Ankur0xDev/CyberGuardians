@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { X, Shield, Lock, Users, Wifi, Download, Settings, AlertTriangle } from 'lucide-react';
 import { securityTips } from '../data/gameData';
 

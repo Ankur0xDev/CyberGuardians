@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { motion } from 'framer-motion';
 import type { CharacterType } from '../types/game';
 import { User, Bot, GraduationCap } from 'lucide-react';

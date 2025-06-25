@@ -1,4 +1,4 @@
-import React from 'react';
+
 import type { User, Badge } from '../types/game';
 import { Shield, Award, Trophy, TrendingUp } from 'lucide-react'; 
 

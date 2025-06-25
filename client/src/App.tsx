@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import   { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CharacterSelect from './components/CharacterSelect';
 import GameDashboard from './components/GameDashboard';
@@ -17,7 +17,7 @@ const LOCAL_STORAGE_LEVELS_KEY = 'cyberGuardiansLevels';
 const LOCAL_STORAGE_TIMESTAMP_KEY = 'cyberGuardiansTimestamp';
 const EXPIRY_DAYS = 7;
 const MS_IN_DAY = 24 * 60 * 60 * 1000;
-
+ 
 function App() {
   const [gameState, setGameState] = useState<GameState>({
     user: {
@@ -86,7 +86,7 @@ function App() {
 
   useEffect(() => {
     // Check for new badges when levels change
-    const earnedBadges = calculateBadges(gameState.user, levels);
+    const earnedBadges = calculateBadges(gameState.user);
     const newEarnedBadge = earnedBadges.find(badge => 
       !gameState.user.badges.some(userBadge => userBadge.id === badge.id)
     );

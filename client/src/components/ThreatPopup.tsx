@@ -1,9 +1,8 @@
-import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AlertTriangle, Mail, Globe, Download, MessageSquare, Wifi } from 'lucide-react';
+import { AlertTriangle, Mail, Globe, Download, MessageSquare, Wifi, Users } from 'lucide-react';
 
 interface ThreatPopupProps {
-  type: 'email' | 'website' | 'download' | 'message' | 'network';
+  type: 'email' | 'website' | 'download' | 'message' | 'network' | 'social';
   isVisible: boolean;
   title: string;
   description: string;
@@ -15,7 +14,8 @@ const threatIcons = {
   website: Globe,
   download: Download,
   message: MessageSquare,
-  network: Wifi
+  network: Wifi,
+  social: Users
 };
 
 const threatColors = {
@@ -23,7 +23,8 @@ const threatColors = {
   website: 'border-yellow-500 bg-yellow-900/30',
   download: 'border-purple-500 bg-purple-900/30',
   message: 'border-orange-500 bg-orange-900/30',
-  network: 'border-blue-500 bg-blue-900/30'
+  network: 'border-blue-500 bg-blue-900/30',
+  social: 'border-pink-500 bg-pink-900/30'
 };
 
 export default function ThreatPopup({ type, isVisible, title, description, onClose }: ThreatPopupProps) {

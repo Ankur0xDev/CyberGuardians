@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { motion } from 'framer-motion';
 import type { SceneType } from '../types/game';
 import { Monitor, Server, Coffee, Home, Building, Shield, Cpu } from 'lucide-react';

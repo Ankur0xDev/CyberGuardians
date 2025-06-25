@@ -1,4 +1,4 @@
-import React from 'react';
+
 import  type { Level } from '../types/game';
 import { Lock, CheckCircle, Star } from 'lucide-react';
 import * as Icons from 'lucide-react';
@@ -25,7 +25,7 @@ export default function LevelSelection({ levels, onSelectLevel, onBack }: LevelS
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {levels.map((level) => {
-            const IconComponent = Icons[level.icon as keyof typeof Icons] || Icons.Shield;
+            const IconComponent = (Icons[level.icon as keyof typeof Icons] || Icons.Shield) as React.ComponentType<any>;
             
             return (
               <div
