@@ -1,4 +1,3 @@
-
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface DialogueBoxProps {
@@ -18,7 +17,7 @@ export default function DialogueBox({ text, isVisible, onNext, onSkip, showContr
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 50, scale: 0.9 }}
           transition={{ duration: 0.3 }}
-          className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 max-w-2xl w-full mx-4"
+          className="relative mx-auto max-w-2xl w-full mb-6"
         >
           <div className="bg-gray-900/95 backdrop-blur border-2 border-cyan-500 rounded-xl p-6 shadow-2xl">
             <motion.p
@@ -49,10 +48,7 @@ export default function DialogueBox({ text, isVisible, onNext, onSkip, showContr
             )}
           </div>
           
-          {/* Speech bubble tail */}
-          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full">
-            <div className="w-0 h-0 border-l-[15px] border-r-[15px] border-t-[15px] border-l-transparent border-r-transparent border-t-cyan-500"></div>
-          </div>
+          {/* Speech bubble tail (optional, can be removed or adjusted for relative positioning) */}
         </motion.div>
       )}
     </AnimatePresence>

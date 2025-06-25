@@ -50,7 +50,7 @@ export default function LevelSelection({ levels, onSelectLevel, onBack }: LevelS
                   {level.bestScore > 250 && (
                     <Star className="w-6 h-6 text-yellow-400" />
                   )}
-                </div>
+                </div> 
 
                 {/* Level Icon */}
                 <div 
