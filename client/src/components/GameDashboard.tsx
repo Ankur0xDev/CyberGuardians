@@ -8,16 +8,15 @@ interface GameDashboardProps {
   onStartGame: () => void;
   onShowTips: () => void;
 }
-
 export default function GameDashboard({ user, badges, onStartGame, onShowTips }: GameDashboardProps) {
   const earnedBadges = badges.filter(badge => 
     user.badges.some(userBadge => userBadge.id === badge.id)
   );
-
+        
+      
   const nextBadge = badges.find(badge => 
     !user.badges.some(userBadge => userBadge.id === badge.id)
   );
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 text-white">
       {/* Header */}

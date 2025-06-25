@@ -12,6 +12,12 @@ import { badges, levels as initialLevels } from './data/gameData';
 import { scenariosByLevel } from './data/scenarios';
 import { calculateBadges, unlockNextLevel, updateLevelCompletion } from './utils/gameLogic';
 
+const LOCAL_STORAGE_KEY = 'cyberGuardiansGameState';
+const LOCAL_STORAGE_LEVELS_KEY = 'cyberGuardiansLevels';
+const LOCAL_STORAGE_TIMESTAMP_KEY = 'cyberGuardiansTimestamp';
+const EXPIRY_DAYS = 7;
+const MS_IN_DAY = 24 * 60 * 60 * 1000;
+
 function App() {
   const [gameState, setGameState] = useState<GameState>({
     user: {
@@ -39,13 +45,44 @@ function App() {
   const [showBadgeAnimation, setShowBadgeAnimation] = useState(false);
 
   useEffect(() => {
-    // Initialize levels with scenarios
+    // Load state from localStorage on mount
+    const savedState = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const savedLevels = localStorage.getItem(LOCAL_STORAGE_LEVELS_KEY);
+    const savedTimestamp = localStorage.getItem(LOCAL_STORAGE_TIMESTAMP_KEY);
+    const now = Date.now();
+    if (savedState && savedLevels && savedTimestamp) {
+      const age = now - parseInt(savedTimestamp, 10);
+      if (age < EXPIRY_DAYS * MS_IN_DAY) {
+        try {
+          setGameState(JSON.parse(savedState));
+          setLevels(JSON.parse(savedLevels));
+          return;
+        } catch (e) {
+          // Fallback to default if parsing fails
+        }
+      } else {
+        // Expired, clear old data
+        localStorage.removeItem(LOCAL_STORAGE_KEY);
+        localStorage.removeItem(LOCAL_STORAGE_LEVELS_KEY);
+        localStorage.removeItem(LOCAL_STORAGE_TIMESTAMP_KEY);
+      }
+    }
+    // If no valid saved state, initialize levels as before
     const levelsWithScenarios = initialLevels.map(level => ({
       ...level,
       scenarios: scenariosByLevel[level.id] || []
     }));
     setLevels(levelsWithScenarios);
   }, []);
+
+  useEffect(() => {
+    // Save state to localStorage on relevant changes
+    if (levels.length > 0) {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(gameState));
+      localStorage.setItem(LOCAL_STORAGE_LEVELS_KEY, JSON.stringify(levels));
+      localStorage.setItem(LOCAL_STORAGE_TIMESTAMP_KEY, Date.now().toString());
+    }
+  }, [gameState, levels]);
 
   useEffect(() => {
     // Check for new badges when levels change
